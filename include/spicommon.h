@@ -1,7 +1,12 @@
 
-//
-// Created by zheng on 2025/9/12.
-//
+/*
+ * Copyright (C) 2025-09-15  zheng zhao
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License v3.0 or later.
+ * See <https://www.gnu.org/licenses/>.
+ */
+
 
 #ifndef SPI_COMMON_H
 #define SPI_COMMON_H
