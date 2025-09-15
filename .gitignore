@@ -39,3 +39,7 @@
 
 # debug information files
 *.dwo
+
+_output/
+/.quarto/
+**/*.quarto_ipynb
