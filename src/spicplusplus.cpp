@@ -66,7 +66,7 @@ void SpiCPlusPlus::close() {
     }
 }
 
-int SpiCPlusPlus::xtransfer(const uint8_t *const tx, uint8_t *rx, const uint32_t &len) {
+int SpiCPlusPlus::xtransfer(const uint8_t *const tx, uint8_t *rx, const uint32_t len) {
     struct spi_ioc_transfer msg {};
 
     msg.tx_buf = reinterpret_cast<unsigned long>(tx);
@@ -76,10 +76,10 @@ int SpiCPlusPlus::xtransfer(const uint8_t *const tx, uint8_t *rx, const uint32_t
     return ::ioctl(_fd, SPI_IOC_MESSAGE(1), &msg);
 }
 
-int SpiCPlusPlus::read(uint8_t *rx, const uint32_t &len) {
+int SpiCPlusPlus::read(uint8_t *rx, const uint32_t len) {
     return xtransfer(nullptr, rx, len);
 }
 
-int SpiCPlusPlus::write(const uint8_t *const tx, const uint32_t &len) {
+int SpiCPlusPlus::write(const uint8_t *const tx, const uint32_t len) {
     return xtransfer(tx, nullptr, len);
 }

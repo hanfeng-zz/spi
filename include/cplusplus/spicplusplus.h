@@ -31,11 +31,11 @@ public:
 
     int open(const std::string &dev, const struct spi_config &config);
 
-    int xtransfer(const uint8_t *const tx, uint8_t *rx, const uint32_t &len);
+    int xtransfer(const uint8_t *const tx, uint8_t *rx, const uint32_t len);
 
-    int read(uint8_t *rx, const uint32_t &len);
+    int read(uint8_t *rx, const uint32_t len);
 
-    int write(const uint8_t *const tx, const uint32_t &len);
+    int write(const uint8_t *const tx, const uint32_t len);
 protected:
     void close();
 private:
