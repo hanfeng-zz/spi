@@ -142,34 +142,23 @@ public:
         return _spi->xtransfer(tx.msg, rx.msg, sizeof(struct spi_groups_idt82p2916));
     }
 
-    int read_au5508(const uint8_t page, const uint8_t addr, uint8_t &val) const {
+    int read_au5508(const uint8_t addr, uint8_t &val) const {
         struct spi_groups_msg tx {
                 .au5508 = {0, SPI_GROUPS_AU5508_READ, addr, SPI_GROUPS_INVALID_VAL_CHAR}
-        }, txpage {
-            .au5508 = {0, SPI_GROUPS_AU5508_WRITE, 0xff, page}
         }, rx {};
 
-        int rc = _spi->xtransfer(txpage.msg, rx.msg, sizeof(struct spi_groups_au5508));
-        if (-1 != rc) {
-            rc = _spi->xtransfer(tx.msg, rx.msg, sizeof(struct spi_groups_au5508));
-            val = rx.au5508.data;
-        }
+        int rc = _spi->xtransfer(tx.msg, rx.msg, sizeof(struct spi_groups_au5508));
+
+        val = rx.au5508.data;
         return rc;
     }
 
-    int write_au5508(const uint8_t page, const uint8_t addr, const uint8_t val) const {
+    int write_au5508(const uint8_t addr, const uint8_t val) const {
         struct spi_groups_msg tx {
                 .au5508 = {0, SPI_GROUPS_AU5508_WRITE, addr, val}
-        }, txpage {
-            .au5508 = {0, SPI_GROUPS_AU5508_WRITE, 0xff, page}
         }, rx {};
 
-        int rc = _spi->xtransfer(txpage.msg, rx.msg, sizeof(struct spi_groups_au5508));
-        if (-1 != rc) {
-            rc = _spi->xtransfer(tx.msg, rx.msg, sizeof(struct spi_groups_au5508));
-        }
-        return rc;
-
+        return _spi->xtransfer(tx.msg, rx.msg, sizeof(struct spi_groups_au5508));
     }
 
     int read_au53xx(const uint8_t addr, uint8_t &val) const {
